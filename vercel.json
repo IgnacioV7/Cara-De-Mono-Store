@@ -1,0 +1,15 @@
+{
+  "name": "cara-de-mono-store",
+  "version": 2,
+  "public": true,
+  "build": {
+    "src": "docs",
+    "use": "@vercel/node"
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "docs"
+    }
+  ]
+}
