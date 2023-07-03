@@ -9,9 +9,9 @@ export class ProductsService {
     id: 1,
     name: 'Product 1',
     description: 'bla bla',
-    price: 8990,
-    stock: 100,
-    image: ''
+    // price: 8990,
+    // stock: 100,
+    // image: ''
   }];
 
   findAll() {

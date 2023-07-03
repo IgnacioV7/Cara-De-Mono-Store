@@ -1,28 +1,33 @@
 import { IsString, IsNumber, IsUrl, IsNotEmpty, IsPositive } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { ApiProperty, PartialType, OmitType  } from '@nestjs/swagger';
 
 export class CreateProductDTO {
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly name: string;
 
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly description: string;
 
-  @IsNumber()
-  @IsNotEmpty()
-  @IsPositive()
-  readonly price: number;
+  // @ApiProperty()
+  // @IsNumber()
+  // @IsNotEmpty()
+  // @IsPositive()
+  // readonly price: number;
 
-  @IsNumber()
-  @IsNotEmpty()
-  @IsPositive()
-  readonly stock: number;
+  // @ApiProperty()
+  // @IsNumber()
+  // @IsNotEmpty()
+  // @IsPositive()
+  // readonly stock: number;
 
-  @IsUrl()
-  @IsNotEmpty()
-  readonly image: string;
+  // @ApiProperty()
+  // @IsUrl()
+  // @IsNotEmpty()
+  // readonly image: string;
 }
 
-export class UpdateProductDTO extends PartialType(CreateProductDTO) { }
+export class UpdateProductDTO extends PartialType(OmitType(CreateProductDTO, ['name'])) { }
