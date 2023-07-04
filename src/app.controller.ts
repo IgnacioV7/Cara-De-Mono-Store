@@ -23,4 +23,10 @@ export class AppController {
   hello() {
     return 'con /sas/';
   }
+
+  @ApiOperation({summary: 'Primera conexion a una base de datos Postgres. | First connection to a Postgres database.'})
+  @Get('tasks')
+  tasks(){
+    return this.appService.getTasks();
+  }
 }

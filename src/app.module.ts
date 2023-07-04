@@ -3,17 +3,16 @@ import { HttpModule, HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
+import { join } from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.services';
 import { DatabaseModule } from './database/database.module';
-
 import { enviroments } from './enviroment';
 import config from './config';
-import { join } from 'path';
-import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [

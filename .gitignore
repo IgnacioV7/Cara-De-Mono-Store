@@ -37,4 +37,8 @@ lerna-debug.log*
 # Variable de entorno - ENV
 *.env
 
+# Cloud Application Platform - VERCEL
 .vercel
+
+# Persistencia de datos postgres
+/postgres_data
