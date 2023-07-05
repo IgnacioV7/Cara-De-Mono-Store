@@ -12,22 +12,22 @@ export class CreateProductDTO {
   @IsNotEmpty()
   readonly description: string;
 
-  // @ApiProperty()
-  // @IsNumber()
-  // @IsNotEmpty()
-  // @IsPositive()
-  // readonly price: number;
+  @ApiProperty()
+  @IsNumber()
+  @IsNotEmpty()
+  @IsPositive()
+  readonly price: number;
 
-  // @ApiProperty()
-  // @IsNumber()
-  // @IsNotEmpty()
-  // @IsPositive()
-  // readonly stock: number;
+  @ApiProperty()
+  @IsNumber()
+  @IsNotEmpty()
+  @IsPositive()
+  readonly stock: number;
 
-  // @ApiProperty()
-  // @IsUrl()
-  // @IsNotEmpty()
-  // readonly image: string;
+  @ApiProperty()
+  @IsUrl()
+  @IsNotEmpty()
+  readonly image: string;
 }
 
-export class UpdateProductDTO extends PartialType(OmitType(CreateProductDTO, ['name'])) { }
+export class UpdateProductDTO extends PartialType(CreateProductDTO) { }

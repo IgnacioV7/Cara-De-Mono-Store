@@ -1,7 +1,8 @@
+# 👇 Archivo .yml de configuracion para Docker
 version: '3.3'
 
 services:
-  postgres:
+  postgres: # 👈 Base de dato Postgres para NestJS
     image: postgres:13
     environment:
       - POSTGRES_DB=my_db
@@ -11,7 +12,7 @@ services:
       - '5432:5432'
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
-  pgadmin:
+  pgadmin: # 👈 PGAdmin interfaz para base de datos Postgres
     image: dpage/pgadmin4
     environment:
      - PGADMIN_DEFAULT_EMAIL=root@admin.com

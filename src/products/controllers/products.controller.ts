@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, Query, HttpStatus, HttpCode, Res /*, ParseIntPipe*/ } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Query, HttpStatus, HttpCode/*, Res , ParseIntPipe*/ } from '@nestjs/common';
 // import { Response } from 'express';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -19,11 +19,11 @@ export class ProductsController {
 
   @Get(':productId')
   @HttpCode(HttpStatus.ACCEPTED)
-  getOne(@Param('productId', ParseIntPipe) productId: string) {
+  getOne(@Param('productId') productId: number) {
     // response.status(200).send({
     //   mensaje: `product ${productId}`,
     // });
-    return this.productsService.findOne(+productId);
+    return this.productsService.findOne(productId);
   }
 
   @Get()
@@ -43,14 +43,14 @@ export class ProductsController {
   }
 
   @Put(':id')
-  update(@Param('id', ParseIntPipe) id: string, @Body() payload: UpdateProductDTO) {
+  update(@Param('id') id: number, @Body() payload: UpdateProductDTO) {
     // return { mensaje: 'Ación de editar', product: id, payload };
-    return this.productsService.update(+id, payload);
+    return this.productsService.update(id, payload);
   }
 
   @Delete(':id')
-  delete(@Param('id', ParseIntPipe) id: string) {
+  delete(@Param('id') id: number) {
     // return { mensaje: 'Ación de Eliminar', product: id };
-    return this.productsService.remove(+id);
+    return this.productsService.remove(id);
   }
 }
