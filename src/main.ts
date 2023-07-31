@@ -1,5 +1,5 @@
-import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
+import { NestFactory, Reflector } from '@nestjs/core';
+import { ValidationPipe, ClassSerializerInterceptor } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
@@ -11,9 +11,14 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
-      forbidNonWhitelisted: true
+      forbidNonWhitelisted: true,
+      transformOptions:{
+        enableImplicitConversion: true
+      }
     })
   );
+
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   const config = new DocumentBuilder()
     .setTitle('API')
@@ -30,7 +35,7 @@ async function bootstrap() {
   await app.listen(process.env.PORT || 3000);
 
   // get the swagger json file (if app is running in development mode)
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'stag' || process.env.NODE_ENV === 'prod') {
 
     // write swagger ui files
     get(`http://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js`, function (response) {

@@ -1,8 +1,10 @@
-import { Controller, Get, Param, Post, Body, Put, Delete, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete/*, ParseIntPipe*/ } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { CustomersService } from './../services/customers.service';
 import { CreateCustomerDto, UpdateCustomerDto } from './../dtos/customers.dtos';
+
+import { ParseIntPipe } from '../../common/pipes/parse-int/parse-int.pipe';
 
 @ApiTags('customers')
 @Controller('customers')

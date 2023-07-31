@@ -12,6 +12,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.services';
 import { DatabaseModule } from './database/database.module';
 import { enviroments } from './enviroment';
+import { AuthModule } from './auth/auth.module';
 import config from './config';
 
 @Module({
@@ -25,15 +26,17 @@ import config from './config';
       load: [config],
       isGlobal: true,
       validationSchema: Joi.object({
-        API_KEY: Joi.number().required(),
+        API_KEY: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
         DATABASE_NAME: Joi.string().required(),
-        DATABASE_PORT: Joi.number().required()
+        DATABASE_PORT: Joi.number().required(),
       })
     }),
     HttpModule,
     ProductsModule,
     UsersModule,
-    DatabaseModule
+    DatabaseModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [
